@@ -1,6 +1,8 @@
 import express from 'express';
 const app=express();
 app.use(express.json({limit:'1mb'}));
+// Vercel rewrite forwards /api/:path* as /api?route=:path*.
+app.use((req,_res,next)=>{if(req.path==='/api'&&typeof req.query.route==='string')req.url='/api/'+req.query.route;next();});
 const seed=[
 {id:'v1',name:'AURORA',call:'VSL-01',progress:28,speed:78,fuel:82,temp:71,hull:96,route:'PRIMARY',status:'IN TRANSIT'},
 {id:'v2',name:'PIONEER',call:'VSL-02',progress:51,speed:69,fuel:66,temp:84,hull:88,route:'PRIMARY',status:'IN TRANSIT'},
