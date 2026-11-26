@@ -1,1 +1,0 @@
-export default function handler(req,res){res.setHeader('Cache-Control','no-store');res.status(200).json({status:'ok',service:'star-transport-api',version:'1.0.0',timestamp:new Date().toISOString()})}
