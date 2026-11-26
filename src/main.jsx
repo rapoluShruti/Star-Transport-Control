@@ -5,7 +5,7 @@ const seed=[
 {id:'v1',name:'AURORA',call:'VSL-01',progress:28,speed:78,fuel:82,temp:71,hull:96,route:'PRIMARY',status:'IN TRANSIT',color:'#61e8ff'},
 {id:'v2',name:'PIONEER',call:'VSL-02',progress:51,speed:69,fuel:66,temp:84,hull:88,route:'PRIMARY',status:'IN TRANSIT',color:'#c5f46a'},
 {id:'v3',name:'WAYFARER',call:'VSL-03',progress:73,speed:70,fuel:74,temp:79,hull:93,route:'PRIMARY',status:'IN TRANSIT',color:'#ffb36b'}];
-const density=(p,r)=>r==='ECHO'?Math.max(.18,Math.min(.52,.31+.09*Math.sin(p/11)+.03*Math.cos(p/7))):Math.max(.22,Math.min(.96,.47+.21*Math.sin((p+8)/13)+.11*Math.cos(p/9));
+const density=(p,r)=>r==='ECHO'?Math.max(.18,Math.min(.52,.31+.09*Math.sin(p/11)+.03*Math.cos(p/7))):Math.max(.22,Math.min(.96,.47+.21*Math.sin((p+8)/13)+.11*Math.cos(p/9)));
 function App(){
  const[fleet,setFleet]=useState(()=>{try{return JSON.parse(localStorage.getItem('fleet'))||seed}catch{return seed}}),[alerts,setAlerts]=useState([{id:1,level:'CRITICAL',title:'Thermal threshold approaching',body:'PIONEER temperature exceeds 80°C. Reduce throttle or reroute.',vessel:'VSL-02',ack:false},{id:2,level:'WARNING',title:'Foobar density spike detected',body:'Sector 04 concentration may increase fuel consumption.',vessel:'ALL VESSELS',ack:false}]),[selected,setSelected]=useState('v1'),[paused,setPaused]=useState(false),[api,setApi]=useState('CONNECTING'),[sync,setSync]=useState('LOCAL CACHE');
  const active=fleet.filter(v=>v.status==='IN TRANSIT'),chosen=fleet.find(v=>v.id===selected)||fleet[0];
