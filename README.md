@@ -1,31 +1,19 @@
 # STAR//OPS — Interstellar Transit Command
 
-Operator-console prototype for a three-vessel convoy traveling from Star A to Star B through a variable-density foobar corridor.
+React + Vite operator dashboard with Node.js/Express API and Vercel serverless API routes.
 
-## Features
-- Live vessel simulation with speed, fuel, thermal load, hull integrity and crossing progress.
-- Foobar density model affects drag, fuel burn and thermal load.
-- Lower-density ECHO route and single-vessel or convoy rerouting.
-- Operator commands: throttle up/down, emergency stop, pause/resume and engine-failure injection.
-- Alert center with severity and vessel association.
-- Failure behavior: a failed vessel freezes at its current crossing progress and creates a critical alert.
-- Responsive operator UI and browser persistence.
+## Stack
+- React 18 + Vite frontend
+- Node.js + Express standalone API (server.js, port 4000)
+- Vercel Functions: GET /api/health, GET/POST /api/fleet
+- Responsive CSS dashboard and browser localStorage demo state
 
-## Run locally
-This is a dependency-free static app. Serve the repository root with `npx serve .` and open the local URL.
+## Run
+`npm install && npm run dev`
+Frontend: http://localhost:5173. Standalone API: `npm start`, then http://localhost:4000/api/health.
 
 ## Demo
-1. Watch all three vessels cross Star A → Star B.
-2. Select PIONEER and change speed or reroute it to ECHO.
-3. Pause and resume the simulation.
-4. Inject an engine failure and confirm the vessel stops mid-crossing and raises a critical alert.
-5. Reset to restore the initial scenario.
+Three simulated vessels, density-based drag/fuel/thermal behavior, primary/echo route, throttle, pause/resume, reroute, emergency stop, failure injection, alert acknowledgement and fleet telemetry.
 
-## Architecture
-- `engine.js`: deterministic domain logic (density profile, vessel tick, commands, fleet rollups).
-- `app.js`: state orchestration, browser persistence, rendering and command dispatch.
-- `index.html` / `styles.css`: responsive operator experience, route plot and control surface.
-- `tests/engine.test.js`: core simulation invariants.
-
-## Scope and safety
-This is a demonstrable simulation prototype, not a production flight-control system. All telemetry is synthetic. Browser localStorage is used for persistence; there is no real spacecraft hardware, shared multi-operator backend, authentication, database, or live telemetry ingestion. Real-world use would require approved operational interfaces, durable storage, identity controls, audit logging and safety certification.
+## Scope
+Demonstrator only; telemetry is synthetic. The Express and Vercel APIs are stateless demo endpoints. There is no database, authentication, shared multi-user synchronization, hardware integration or real-world navigation capability.
